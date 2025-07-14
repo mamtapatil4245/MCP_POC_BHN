@@ -1,26 +1,34 @@
-name: MCP Weather Tools
-description: Tools for weather alerts and forecasts
-transport:
-  type: streamable
-  endpoint: https://mcpserverpocbhn.azurewebsites.net/mcp/stream
-capabilities:
-  tools:
-    - name: get_alerts
-      description: Get weather alerts for a US state
-      inputSchema:
-        type: object
-        properties:
-          state:
-            type: string
-            description: Two-letter US state code (e.g., CA, NY)
-        required: [state]
-    - name: get_forecast
-      description: Get weather forecast for a location
-      inputSchema:
-        type: object
-        properties:
-          latitude:
-            type: number
-          longitude:
-            type: number
-        required: [latitude, longitude]
+openapi: 3.0.1
+info:
+  title: MCP Weather Tools
+  description: Tools for weather alerts and forecasts
+  version: 1.0.0
+servers:
+  - url: https://mcpserverpocbhn.azurewebsites.net/
+paths:
+  /mcp/stream:
+    post:
+      summary: MCP Stream Endpoint
+      operationId: mcpStream
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jsonrpc:
+                  type: string
+                id:
+                  type: integer
+                method:
+                  type: string
+                params:
+                  type: object
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
