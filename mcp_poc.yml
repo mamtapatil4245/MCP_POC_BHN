@@ -2,7 +2,7 @@ name: MCP Weather Tools
 description: Tools for weather alerts and forecasts
 transport:
   type: streamable
-  endpoint: https://raw.githubusercontent.com/mamtapatil4245/MCP_POC_BHN/refs/heads/main/mcp_poc.yml
+  endpoint: https://mcpserverpocbhn.azurewebsites.net/mcp/stream
 capabilities:
   tools:
     - name: get_alerts
